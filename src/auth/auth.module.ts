@@ -5,6 +5,7 @@ import { PassportModule } from '@nestjs/passport'
 import { Env } from '@/env'
 import { JwtStrategy } from './jwt.strategy'
 
+// gerar rsa256 private and public keys no terminal e converter para base64
 @Module({
   imports: [
     PassportModule,
