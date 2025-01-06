@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
-import { Env } from '@/env'
+import { Env } from '@/infra/env'
 import { JwtStrategy } from './jwt.strategy'
 
 // gerar rsa256 private and public keys no terminal e converter para base64
