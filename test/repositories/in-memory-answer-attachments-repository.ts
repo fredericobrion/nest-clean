@@ -1,36 +1,36 @@
-import { QuestionAttachmentsRepository } from '@/domain/forum/application/repositories/question-attachments-repository'
-import { QuestionAttachment } from '@/domain/forum/enterprise/entities/question-attachment'
+import { AnswerAttachmentsRepository } from '@/domain/forum/application/repositories/answer-attachments-repository'
+import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment'
 
-export class InMemoryQuestionAttachmentsRepository
-  implements QuestionAttachmentsRepository
+export class InMemoryAnswerAttachmentsRepository
+  implements AnswerAttachmentsRepository
 {
-  public items: QuestionAttachment[] = []
+  public items: AnswerAttachment[] = []
 
-  async findManyByQuestionId(questionId: string) {
-    const questionAttachments = this.items.filter(
-      (item) => item.questionId.toString() === questionId,
+  async findManyByAnswerId(answerId: string) {
+    const answerAttachments = this.items.filter(
+      (item) => item.answerId.toString() === answerId,
     )
 
-    return questionAttachments
+    return answerAttachments
   }
 
-  async createMany(attachments: QuestionAttachment[]): Promise<void> {
+  async createMany(attachments: AnswerAttachment[]): Promise<void> {
     this.items.push(...attachments)
   }
 
-  async deleteMany(attachments: QuestionAttachment[]): Promise<void> {
-    const questionAttachments = this.items.filter((item) => {
+  async deleteMany(attachments: AnswerAttachment[]): Promise<void> {
+    const answerAttachments = this.items.filter((item) => {
       return !attachments.some((attachment) => attachment.equals(item))
     })
 
-    this.items = questionAttachments
+    this.items = answerAttachments
   }
 
-  async deleteManyByQuestionId(questionId: string) {
-    const questionAttachments = this.items.filter(
-      (item) => item.questionId.toString() !== questionId,
+  async deleteManyByAnswerId(answerId: string) {
+    const answerAttachments = this.items.filter(
+      (item) => item.answerId.toString() !== answerId,
     )
 
-    this.items = questionAttachments
+    this.items = answerAttachments
   }
 }
